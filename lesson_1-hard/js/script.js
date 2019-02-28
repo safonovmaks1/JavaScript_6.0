@@ -2,20 +2,19 @@
 
 // Создать переменную num со значением 33721 
 // Вывести в консоль произведение (умножение) цифр этого числа
-let num = 33721;
-let str = + (num);
-// String или + -  преобразовывает переданное значение в строку.
-let arr = str.split('');
-// split - осуществляет разбиение строки в массив
+let myNumber = parseInt(33721);
+
+let str = myNumber + ""; //  число
+
+let arr = str.split(""); // split - осуществляет разбиение строки в массив
+
 let result;
 
 result = arr[0];
 
     for (let i = 1; i < arr.length; i++) {
-        result *= Number(arr[i]);
+        result *= (arr[i]);
     }
-
-// Number - получает параметр, который преобразовывает в число.
 
 console.log(result);
 
