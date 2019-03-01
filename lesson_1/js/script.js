@@ -31,5 +31,5 @@ appData.expenses[secondQuestion] = secondAnswer;
 
 console.log(appData);
 
-// Вывести на экран пользователя бюджет на 1 день(брать месяц за 30 дней)
+// бюджет на 1 день(брать месяц за 30 дней)
 alert(money / 30);
