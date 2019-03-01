@@ -5,11 +5,11 @@ let money = +prompt("Ваш бюджет на месяц?", ""), // число
     time = prompt("Введите дату в формате YYYY-MM-DD", ""),
 
     // первый раз
-    answer1 = prompt("Введите обязательную статью расходов в этом месяце", ""),
-    answer2 = +prompt("Во сколько обойдется?", ""), // число 
+    firstQuestion = prompt("Введите обязательную статью расходов в этом месяце", ""),
+    firstAnswer = +prompt("Во сколько обойдется?", ""), // число 
     // второй раз
-    answer3 = prompt("Введите обязательную статью расходов в этом месяце", ""),
-    answer4 = +prompt("Во сколько обойдется?", ""); // число
+    secondQuestion = prompt("Введите обязательную статью расходов в этом месяце", ""),
+    secondAnswer = +prompt("Во сколько обойдется?", ""); // число
 
 // Создать объект appData
 let appData = {
@@ -26,8 +26,8 @@ let appData = {
     “ответ на первый вопрос” : “ответ на второй вопрос”
     }
 */
-appData.expenses[answer1] = answer2;
-appData.expenses[answer3] = answer4;
+appData.expenses[firstQuestion] = firstAnswer;
+appData.expenses[secondQuestion] = secondAnswer;
 
 console.log(appData);
 
