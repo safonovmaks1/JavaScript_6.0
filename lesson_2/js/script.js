@@ -2,8 +2,7 @@
 
 // Переменные (money и time)
 let money = +prompt("Ваш бюджет на месяц?", ''), // число
-    time = prompt("Введите дату в формате DD.MM.YYYY", ''),
-    i = 0;
+    time = prompt("Введите дату в формате DD.MM.YYYY", '');
 
 // Объект appData
 let appData = {
@@ -25,7 +24,7 @@ let appData = {
 
 // console.log(appData);
 
-for (i = 0; i < 2; i++) {
+for (let i = 0; i < 2; i++) {
     let a = prompt("Введите обязательную статью расходов в этом месяце", ''),
         b = prompt("Во сколько обойдется?", '');
     if ((typeof (a)) === 'string' && (typeof (a)) != null && (typeof (b)) != null && a != '' && b != '' && a.length < 50) {
