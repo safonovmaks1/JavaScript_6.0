@@ -12,7 +12,7 @@ let newStr = result.slice(0, 27);
 let characterStr = "оо";
 let result2 = newStr.concat(characterStr);
 
-// alert(result2);
+alert(result2);
 
 // 2
 
