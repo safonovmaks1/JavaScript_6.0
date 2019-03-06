@@ -72,7 +72,7 @@ let appData = {
                 appData.income = items.split(', ');
                 appData.income.push(prompt('Может что-то еще?'));
                 appData.income.sort();
-                appData.income.forEach(function(items, i, income) {
+                appData.income.forEach(function(items, i) {
                     let num = i + 1; // начинается с 1
                     console.log(num + " Способы доп. заработка: " + items);
                 });
@@ -82,7 +82,7 @@ let appData = {
         }
     }
 };
-// appData.chooseIncome();
+appData.chooseIncome();
 for (let i in appData) {
-    console.log("Наша программа включает в себя данные: " + i, appData);
+    console.log("Наша программа включает в себя данные: " + i + ': ' + appData[i]);
 }
