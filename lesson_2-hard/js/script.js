@@ -7,18 +7,18 @@
 // · Выходные дни - жирным шрифтом
 // · Текущий день - курсивом(пока можно задать текущий день вручную, без работы с объектом даты)
 let week = [
-        'Monday <br> ', 
-        'Tuesday <br>', 
-        'Wednesday <br>', 
-        'Thursday <br>', 
-        'Friday <br>', 
-        '<em><b>Saturday</b></em> <br>', 
+        'Monday', 
+        'Tuesday', 
+        'Wednesday', 
+        'Thursday', 
+        'Friday', 
+        '<em><b>Saturday</b></em>', 
         '<b>Sunday</b>'
     ];
 
 for (let i = 0; i < week.length; i++) {
     
-    document.write(week[i]);
+    document.write(week[i] + '<br>');
 }
 
 // 2) Создать массив arr = []
