@@ -2,11 +2,10 @@
 
 // 1
 let str = "урок - 3 - был слишком легким";
+let newWord = "легкоо";
 
 let result = str[0].toUpperCase(0) + str.slice(1).replace(/-/g, ' ');
-let newStr = result.slice(0, 23);
-let newWord = "легкоо";
-let result2 = newStr.concat(newWord);
+let result2 = result.slice(0, 23).concat(newWord);
 
 console.log(result);
 alert(result2);
