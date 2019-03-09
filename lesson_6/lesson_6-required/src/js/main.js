@@ -9,19 +9,14 @@ let startBtn = document.getElementById('start'),
     monthSavingsValue = document.getElementsByClassName('monthsavings-value')[0],
     yearSavingsValue = document.getElementsByClassName('yearsavings-value')[0],
 
-	expensesItem = document.getElementsByClassName('expenses-item'),
+	expensesBtn = document.querySelector('.expenses-item-btn'),
+	optionalExpensesBtn = document.querySelector('.optionalexpenses-btn'),
+	countBtn = document.querySelector('.count-budget-btn'),
 
-	// buttons = document.getElementsByTagName('button'),
-	// expensesBtn = buttons[0],
-	// optionalExpensesBtn = buttons[1],
-	// countBtn = buttons[2],
-
-    expensesBtn = document.getElementsByTagName('button')[0],
-    optionalExpensesBtn = document.getElementsByTagName('button')[1],
-	countBtn = document.getElementsByTagName('button')[2],
+	expensesItem = document.querySelectorAll('.expenses-item'),
+	optionalExpensesItem = document.querySelectorAll('.optionalexpenses-item'),
 	
-    optionalExpensesItem = document.querySelectorAll('.optionalexpenses-item'),
-    incomeItem = document.querySelector('.choose-income'),
+	incomeItem = document.querySelector('.choose-income'),
     checkSavings = document.querySelector('#savings'),
     sumValue = document.querySelector('.choose-sum'),
     percentValue = document.querySelector('.choose-percent'),
@@ -35,22 +30,28 @@ startBtn.addEventListener('click', function() {
 	money = +prompt("Ваш бюджет на месяц?", '');
 	
 	while (isNaN(money) || money == '' || money == null) {
-		money = +prompt("Ваш бюджет на месяц?", '');
+		money = +prompt("Ваш бюджет на месяц?", '');	
 	}
+
 	appData.budget = money;
 	appData.timeData = time;
 	budgetValue.textContent = money.toFixed();
 	yearValue.value = new Date(Date.parse(time)).getFullYear();
 	monthValue.value = new Date(Date.parse(time)).getMonth() + 1;
 	dayValue.value = new Date(Date.parse(time)).getDate();
+
+	countBtn.disabled = false;
+	countBtn.style.background = '';
+	
 });
 
-expensesBtn.addEventListener('click', function(){
+expensesBtn.addEventListener('click', function (){
 	let sum = 0;
 	for (let i = 0; i < expensesItem.length; i++) {
 		let a = expensesItem[i].value,
 			b = expensesItem[++i].value;
 		if ((typeof (a)) === 'string' && (typeof (a)) != null && (typeof (b)) != null && a != '' && b != '' && a.length < 50) {
+
 			console.log("done");
 			appData.expenses[a] = b;
 			sum += +b;
@@ -59,10 +60,8 @@ expensesBtn.addEventListener('click', function(){
 			i = i - 1;
 		}
 	}
-
 	expensesValue.textContent = sum;
 });
-
 
 optionalExpensesBtn.addEventListener('click', function() {
 	for (let i = 0; i < optionalExpensesItem.length; i++) {
@@ -75,9 +74,11 @@ optionalExpensesBtn.addEventListener('click', function() {
 countBtn.addEventListener('click', function() {
 	if (appData.budget != undefined) {
 		let totalCosts = 0;
+		
 		for (let i in appData.expenses) {
 			totalCosts += appData.expenses[i];
 		}
+		
 		appData.moneyPerDay = (appData.budget - totalCosts) / 30;
 		daybudgetValue.textContent = appData.moneyPerDay.toFixed(1);
 
@@ -145,35 +146,65 @@ let appData = {
 };
 
 
-// disabled buttons
+let disableBtnExpenses = [].slice.call(expensesItem),
+	disableBtnOptionalExpenses = [].slice.call(optionalExpensesItem);
 
-// обязательные расходы
-expensesBtn.disabled = true;
-expensesBtn.style.background = 'grey';
+disableBtnExpenses.forEach(function (item) {
 
-// необязательные расходы
-optionalExpensesBtn.disabled = true;
-optionalExpensesBtn.style.background = 'grey';
 
-// Расчет дневного бюджета
+
+	item.style.border = '1px solid red';
+	expensesBtn.disabled = true;
+	expensesBtn.style.background = 'gray';
+
+	item.addEventListener('input', function (inputs) {
+
+		if (inputs != 0) {
+			item.style.border = '1px solid green';
+			expensesBtn.disabled = false;
+			expensesBtn.style.background = '';
+		} 
+	});
+});
+
+disableBtnOptionalExpenses.forEach(function (item) {
+
+	item.style.border = '1px solid red';
+	optionalExpensesBtn.disabled = true;
+	optionalExpensesBtn.style.background = 'gray';
+
+	item.addEventListener('input', function (inputs) {
+
+		if (inputs != 0) {
+			item.style.border = '1px solid green';
+			optionalExpensesBtn.disabled = false;
+			optionalExpensesBtn.style.background = '';
+		}
+
+	});
+});
+
+/*
+3. Рассчитать должна активироваться после нажатия на кнопку "Начать расчет"
+   и ответа на вопрос, о бюджете на месяц.
+*/
 countBtn.disabled = true;
 countBtn.style.background = 'grey';
 
 
-// enabled buttons
-/*
+let expensesItemNum = [].slice.call(expensesItem),
+	optionalExpensesItemRus = [].slice.call(optionalExpensesItem);
 
-// обязательные расходы
-expensesBtn.disabled = false;
-expensesBtn.style.background = '';
+// expensesItemNum.forEach(function (i) {
+// 	i.addEventListener('input', function (){
+// 		if (i % 2 == 0) {
+// 			this.value = this.value.replace(/[^0-9]/g, '');
+// 		}
+// 	});
+// });
 
-
-// необязательные расходы
-optionalExpensesBtn.disabled = false;
-optionalExpensesBtn.style.background = '';
-
-
-// Расчет дневного бюджета
-countBtn.disabled = false;
-countBtn.style.background = '';
-*/
+optionalExpensesItemRus.forEach(function (i) {
+	i.addEventListener('input', function () {
+		this.value = this.value.replace(/[^а-яА-ЯёЁ]/g, '');
+	});
+});
