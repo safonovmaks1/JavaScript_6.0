@@ -179,8 +179,7 @@ disableBtnOptionalExpenses.forEach(function (item) {
 			item.style.border = '1px solid green';
 			optionalExpensesBtn.disabled = false;
 			optionalExpensesBtn.style.background = '';
-		}
-
+		} 
 	});
 });
 
@@ -195,13 +194,13 @@ countBtn.style.background = 'grey';
 let expensesItemNum = [].slice.call(expensesItem),
 	optionalExpensesItemRus = [].slice.call(optionalExpensesItem);
 
-// expensesItemNum.forEach(function (i) {
-// 	i.addEventListener('input', function (){
-// 		if (i % 2 == 0) {
-// 			this.value = this.value.replace(/[^0-9]/g, '');
-// 		}
-// 	});
-// });
+expensesItemNum.forEach(function (i, index) {
+	i.addEventListener('input', function (){
+		if (index % 2 == 1) {
+			this.value = this.value.replace(/[^0-9]/g, '');
+		}
+	});
+});
 
 optionalExpensesItemRus.forEach(function (i) {
 	i.addEventListener('input', function () {
