@@ -64,6 +64,7 @@ expensesBtn.addEventListener('click', function (){
 });
 
 optionalExpensesBtn.addEventListener('click', function() {
+	optionalexpensesValue.textContent = '';
 	for (let i = 0; i < optionalExpensesItem.length; i++) {
 		let que = optionalExpensesItem[i].value;
 		appData.optionalExpenses[i] = que;
@@ -145,7 +146,7 @@ let appData = {
 	savings: false,
 };
 
-
+/*
 let disableBtnExpenses = [].slice.call(expensesItem),
 	disableBtnOptionalExpenses = [].slice.call(optionalExpensesItem);
 
@@ -183,10 +184,10 @@ disableBtnOptionalExpenses.forEach(function (item) {
 	});
 });
 
-/*
+
 3. Рассчитать должна активироваться после нажатия на кнопку "Начать расчет"
    и ответа на вопрос, о бюджете на месяц.
-*/
+
 countBtn.disabled = true;
 countBtn.style.background = 'grey';
 
@@ -207,3 +208,33 @@ optionalExpensesItemRus.forEach(function (i) {
 		this.value = this.value.replace(/[^а-яА-ЯёЁ]/g, '');
 	});
 });
+*/
+
+expensesBtn.disabled = true;
+optionalExpensesBtn.disabled = true;
+
+expensesItem.forEach(function (item, index) {
+	item.addEventListener('input', function () {
+		if (index % 2 == 1) {
+			if (!checkValidSum(item.value)) {
+				item.value = item.value.slice(0, -1);
+			}
+
+		}
+		expensesItem.forEach(function (i) {
+			if (item.value == '') {
+				expensesBtn.disabled = true;
+			} else {
+				expensesBtn.disabled = false;
+			}
+		});
+
+
+	});
+
+});
+
+
+function checkValidSum(input) {
+	return /\d$/.test(input);
+}
