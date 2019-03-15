@@ -173,7 +173,7 @@ expensesItem.forEach(function (item, index) {
 
 optionalExpensesBtn.disabled = true;
 
-optionalExpensesItem.forEach(function (item, index) {
+optionalExpensesItem.forEach(function (item) {
 	item.addEventListener('input', function () {
 		if (item != 0) {
 			if (!checkValidRus(item.value)) {
