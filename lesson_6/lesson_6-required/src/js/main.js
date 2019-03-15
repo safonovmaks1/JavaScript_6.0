@@ -146,72 +146,11 @@ let appData = {
 	savings: false,
 };
 
-/*
-let disableBtnExpenses = [].slice.call(expensesItem),
-	disableBtnOptionalExpenses = [].slice.call(optionalExpensesItem);
-
-disableBtnExpenses.forEach(function (item) {
-
-
-
-	item.style.border = '1px solid red';
-	expensesBtn.disabled = true;
-	expensesBtn.style.background = 'gray';
-
-	item.addEventListener('input', function (inputs) {
-
-		if (inputs != 0) {
-			item.style.border = '1px solid green';
-			expensesBtn.disabled = false;
-			expensesBtn.style.background = '';
-		} 
-	});
-});
-
-disableBtnOptionalExpenses.forEach(function (item) {
-
-	item.style.border = '1px solid red';
-	optionalExpensesBtn.disabled = true;
-	optionalExpensesBtn.style.background = 'gray';
-
-	item.addEventListener('input', function (inputs) {
-
-		if (inputs != 0) {
-			item.style.border = '1px solid green';
-			optionalExpensesBtn.disabled = false;
-			optionalExpensesBtn.style.background = '';
-		} 
-	});
-});
-
-
-3. Рассчитать должна активироваться после нажатия на кнопку "Начать расчет"
-   и ответа на вопрос, о бюджете на месяц.
 
 countBtn.disabled = true;
 countBtn.style.background = 'grey';
 
-
-let expensesItemNum = [].slice.call(expensesItem),
-	optionalExpensesItemRus = [].slice.call(optionalExpensesItem);
-
-expensesItemNum.forEach(function (i, index) {
-	i.addEventListener('input', function (){
-		if (index % 2 == 1) {
-			this.value = this.value.replace(/[^0-9]/g, '');
-		}
-	});
-});
-
-optionalExpensesItemRus.forEach(function (i) {
-	i.addEventListener('input', function () {
-		this.value = this.value.replace(/[^а-яА-ЯёЁ]/g, '');
-	});
-});
-*/
-
 expensesBtn.disabled = true;
-optionalExpensesBtn.disabled = true;
 
 expensesItem.forEach(function (item, index) {
 	item.addEventListener('input', function () {
@@ -224,17 +163,38 @@ expensesItem.forEach(function (item, index) {
 		expensesItem.forEach(function (i) {
 			if (item.value == '') {
 				expensesBtn.disabled = true;
+				
 			} else {
 				expensesBtn.disabled = false;
 			}
 		});
-
-
 	});
-
 });
 
+optionalExpensesBtn.disabled = true;
+
+optionalExpensesItem.forEach(function (item, index) {
+	item.addEventListener('input', function () {
+		if (item != 0) {
+			if (!checkValidRus(item.value)) {
+				item.value = item.value.slice(0, -1);
+			}
+
+		}
+		optionalExpensesItem.forEach(function (i) {
+			if (item.value == '') {
+				optionalExpensesBtn.disabled = true;
+			} else {
+				optionalExpensesBtn.disabled = false;
+			}
+		});
+	});
+});
 
 function checkValidSum(input) {
 	return /\d$/.test(input);
+}
+
+function checkValidRus(input) {
+	return /[А-Яа-яЁё]$/.test(input);
 }
