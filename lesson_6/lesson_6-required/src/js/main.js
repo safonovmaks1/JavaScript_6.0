@@ -181,8 +181,8 @@ optionalExpensesItem.forEach(function (item) {
 			}
 
 		}
-		optionalExpensesItem.forEach(function (item) {
-			if (item.value == '') {
+		optionalExpensesItem.forEach(function (i) {
+			if (i.value == '') {
 				optionalExpensesBtn.disabled = true;
 			} else {
 				optionalExpensesBtn.disabled = false;
